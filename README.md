@@ -25,10 +25,10 @@ First, create a client for the desired environment using your merchant ID, key v
 import Sips from 'sherlocks-sips-payment-sdk';
 
 const paypageClient = new Sips.PaypageClient(
-  Sips.Environment.TEST,
-  '002001000000001',
-  1, // This shouldn't be hardcoded here...
-  '002001000000001_KEY1'); // ...and neither should this.
+    process.env.NODE_ENV == 'production' ? Sips.Environment.PROD : Sips.Environment.SIMU,
+    process.env.MERCHANT_ID,
+    process.env.KEY_VERSION,
+    process.env.SECRET_VERSION);
 ```
 
 Then set up a request to initialize a session on the SIPS server:
