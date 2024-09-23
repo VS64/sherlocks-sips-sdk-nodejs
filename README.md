@@ -7,12 +7,12 @@ This package provides a Node.js implementation for SIPS, the Worldline e-payment
 
 This library is provided as two separate packages on NPM . To install it, simply run:
 ```shell
-npm install sips-payment-sdk
+npm install sherlocks-sips-payment-sdk
 ```
 
 Or if you prefer Yarn, run:
 ```shell
-yarn add sips-payment-sdk
+yarn add sherlocks-sips-payment-sdk
 ```
 
 
@@ -22,10 +22,10 @@ yarn add sips-payment-sdk
 ### Initialization
 First, create a client for the desired environment using your merchant ID, key version & secret key:
 ```js
-const { Environment, PaypageClient } = require('@worldline/sips-payment-sdk');
+import Sips from 'sherlocks-sips-payment-sdk';
 
-const paypageClient = new PaypageClient(
-  Environment.TEST,
+const paypageClient = new Sips.PaypageClient(
+  Sips.Environment.TEST,
   '002001000000001',
   1, // This shouldn't be hardcoded here...
   '002001000000001_KEY1'); // ...and neither should this.
@@ -34,17 +34,32 @@ const paypageClient = new PaypageClient(
 Then set up a request to initialize a session on the SIPS server:
 
 ```js
-const { PaymentRequest, Currency, OrderChannel } = require('@worldline/sips-payment-sdk');
+import Sips from 'sherlocks-sips-payment-sdk';
 
-const paymentRequest = new PaymentRequest();
-paymentRequest.amount = 2;
-paymentRequest.currency = Currency.EUR;
-paymentRequest.orderChannel = OrderChannel.INTERNET;
+const paymentRequest = Object.assign(new Sips.PaymentRequest(), {
+    currencyCode: Sips.Currency.EUR,
+    orderChannel: Sips.OrderChannel.INTERNET,
+    interfaceVersion: 'IR_WS_3.4',
+    automaticResponseUrl: 'AUTOMATIC_RETURN_URL',
+    normalReturnUrl: 'NORMAL_RETURN_URL',
+    amount: Math.round(req.body.amount * 100) // Amount in the minimal unit used in the currency
+    // bypassReceiptPage: true
+});
 ```
 Add unique reference for the transaction:
 
+If SIPS 2.0 contract : 
+
 ```js
-paymentRequest.transactionReference = 'unique-transaction-ref';
+paymentRequest.transactionReference = 'unique-transaction-ref'; // Max 35 alphanumeric characters string
+```
+
+If SIPS 1.0 contract migrated to SIPS 2.0 :
+
+```js
+paymentRequest.s10TransactionReference = {
+    s10TransactionId: 'unique-transaction-ref' // Max 6 numeric characters string
+}
 ```
 
 And initialize your session on the server:
@@ -54,7 +69,7 @@ const initializationResponse = await paypageClient.initializePayment(paymentRequ
 
 The `initializationResponse` you'll receive from the server contains all information needed to continue
 handling your transaction. If you're initialization was successful, your response will contain a
-`RedirectionStatusCode.TRANSACTION_INITIALIZED`.
+`RedirectionStatusCode.TRANSACTION_INITIALIZED` (Code 00). 
 
 ### Making the payment
 In case your initialization was successful, you have to use the `redirectionUrl` received to perform a POST request
