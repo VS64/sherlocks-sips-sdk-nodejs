@@ -10,7 +10,7 @@
   "bugs": {
     "url": "https://github.com/VS64/sherlocks-sips-sdk-nodejs/issues"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "scripts": {
     "lint": "eslint src",
