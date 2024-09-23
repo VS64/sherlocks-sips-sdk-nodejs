@@ -1,5 +1,5 @@
 module.exports = Object.freeze({
-  SIMU: 'payment-webinit.simu.sips-services.com',
-  TEST: 'payment-webinit.test.sips-services.com',
-  PROD: 'payment-webinit.sips-services.com',
+  SIMU: 'sherlocks-payment-webinit-simu.secure.lcl.fr',
+  TEST: 'payment-webinit-sherlocks.test.sips-services.com',
+  PROD: 'sherlocks-payment-webinit.secure.lcl.fr'
 });

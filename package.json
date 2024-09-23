@@ -1,17 +1,16 @@
 {
-  "name": "@worldline/sips-payment-sdk",
-  "description": "Library to interact with the Worldline Sips 2.0 API",
+  "name": "sherlocks-sips-payment-sdk",
+  "description": "Library to interact with the Sherlocks Worldline Sips 2.0 API",
   "license": "MIT",
-  "author": "Worldline",
-  "homepage": "https://github.com/worldline/sips-sdk-nodejs",
+  "homepage": "https://github.com/VS64/sherlocks-sips-sdk-nodejs",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/worldline/sips-sdk-nodejs.git"
+    "url": "git+https://github.com/VS64/sherlocks-sips-sdk-nodejs.git"
   },
   "bugs": {
-    "url": "https://github.com/worldline/sips-sdk-nodejs/issues"
+    "url": "https://github.com/VS64/sherlocks-sips-sdk-nodejs/issues"
   },
-  "version": "2.0.1",
+  "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "lint": "eslint src",
@@ -32,6 +31,7 @@
   "keywords": [
     "payments",
     "sips",
+    "sherlocks",
     "worldline"
   ],
   "engines": {
