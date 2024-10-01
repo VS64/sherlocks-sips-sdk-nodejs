@@ -9,7 +9,7 @@ To install it, simply run one of the following commands :
 ```shell
 npm install sherlocks-sips-payment-sdk
 yarn add sherlocks-sips-payment-sdk
-pnpm install sherlocks-sips-payment-sdk
+pnpm add sherlocks-sips-payment-sdk
 ```
 
 ## Usage
