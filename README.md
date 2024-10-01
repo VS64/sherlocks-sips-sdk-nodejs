@@ -5,16 +5,12 @@ This package provides a Node.js implementation for SIPS, the Worldline e-payment
 
 ## Installing
 
-This library is provided as two separate packages on NPM . To install it, simply run:
+To install it, simply run one of the following commands:
 ```shell
 npm install sherlocks-sips-payment-sdk
-```
-
-Or if you prefer Yarn, run:
-```shell
 yarn add sherlocks-sips-payment-sdk
+pnpm install sherlocks-sips-payment-sdk
 ```
-
 
 ## Usage
 > :bulb: Currently this library only supports SIPS in pay page mode.
